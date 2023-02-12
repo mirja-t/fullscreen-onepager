@@ -4,6 +4,30 @@
     display: none;
 }
 .variant {
+    position: relative;
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        display: table;
+        left: 0;
+        z-index: 4;
+        transition: all $section-before-transition ease $section-transition-delay,
+            border-width $section-before-transition ease $section-transition-delay,
+            bottom $section-before-transition ease $section-transition-delay;
+        border-bottom-style: solid;
+    }
+    &:before {
+        width: 0; 
+        height: 0; 
+        border-left: 100vw solid transparent;
+    }
+    &:after {
+        width: 100%; 
+    }
+    @include main-after(0, 0, 0);
+    overflow: hidden;
+
     &#fullpagewrapper {
         &:before,
         &:after {
@@ -20,10 +44,6 @@
                         @if $i % 2 == 1 {  border-bottom-color: $section-color-even; }
                         @else { border-bottom-color: $section-color-odd; }
                     }
-                }
-                header {
-                    @if $i % 2 == 1 {  background-color: $section-color-odd; }
-                    @else { background-color: $section-color-even; }
                 }
             }
         }
@@ -119,8 +139,6 @@
                 transform: translateY(0) !important;
             }
         }
-        @include nav-colors($section-color-even, $section-color-odd);
-        @include nav-mask($section-color-even, $section-color-odd, 'in', '#logowrapper');
     }
 
     // small screen
@@ -133,31 +151,14 @@
             bottom: 0;
             border-bottom-width: max(2vw, 2em);
         }
-    }
-    &.content-wrapper {
-        position: relative;
-        &:before,
-        &:after {
-            content: '';
-            position: absolute;
-            display: table;
-            left: 0;
-            z-index: 4;
-            transition: all $section-before-transition ease $section-transition-delay,
-                border-width $section-before-transition ease $section-transition-delay,
-                bottom $section-before-transition ease $section-transition-delay;
-            border-bottom-style: solid;
+        @for $i from 0 through $sections {
+            &.section-#{$i} {
+                header {
+                    @if $i % 2 == 1 {  background-color: $section-color-odd; }
+                    @else { background-color: $section-color-even; }
+                }
+            }
         }
-        &:before {
-            width: 0; 
-            height: 0; 
-            border-left: 100vw solid transparent;
-        }
-        &:after {
-            width: 100%; 
-        }
-        @include main-after(0, 0, 0);
-        overflow: hidden;
     }
 }
 

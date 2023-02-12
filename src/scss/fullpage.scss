@@ -8,7 +8,6 @@
 }
 
 /* large screen */
-
 // container
 .fullpage {
     overflow: hidden;
@@ -103,8 +102,8 @@ section.section {
     > .container {
         z-index: 3;
         height: 100%;
-        min-height: 100vh;
         padding: calc( 3em + 1vw );
+        overflow: hidden;
     }
 }
 

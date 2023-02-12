@@ -292,8 +292,8 @@ section.section {
 section.section > .container {
   z-index: 3;
   height: 100%;
-  min-height: 100vh;
   padding: calc(3em + 1vw);
+  overflow: hidden;
 }
 
 #fullpagewrapper:not(.fullpage) section.section {
@@ -464,6 +464,7 @@ button {
 h6, h5, h4, h3, h2, h1, nav#nav ul li a {
   font-family: "Helvetica", sans-serif;
   font-weight: 700;
+  margin-top: 0.25em;
   margin-bottom: 0.125em;
 }
 
@@ -511,6 +512,35 @@ h6 {
   display: none;
 }
 
+.variant {
+  position: relative;
+  overflow: hidden;
+}
+.variant:before, .variant:after {
+  content: "";
+  position: absolute;
+  display: table;
+  left: 0;
+  z-index: 4;
+  transition: all 0.625s ease 0.25s, border-width 0.625s ease 0.25s, bottom 0.625s ease 0.25s;
+  border-bottom-style: solid;
+}
+.variant:before {
+  width: 0;
+  height: 0;
+  border-left: 100vw solid transparent;
+}
+.variant:after {
+  width: 100%;
+}
+.variant:before {
+  bottom: 0;
+  border-bottom-width: 0;
+}
+.variant:after {
+  bottom: 0;
+  border-bottom-width: 0;
+}
 .variant#fullpagewrapper:before, .variant#fullpagewrapper:after {
   position: fixed;
 }
@@ -525,26 +555,14 @@ h6 {
 .variant#fullpagewrapper.section-0#fullpagewrapper:before, .variant#fullpagewrapper.section-0#fullpagewrapper:after {
   border-bottom-color: white;
 }
-.variant#fullpagewrapper.section-0 header {
-  background-color: #E6007E;
-}
 .variant#fullpagewrapper.section-1#fullpagewrapper:before, .variant#fullpagewrapper.section-1#fullpagewrapper:after {
   border-bottom-color: #E6007E;
-}
-.variant#fullpagewrapper.section-1 header {
-  background-color: white;
 }
 .variant#fullpagewrapper.section-2#fullpagewrapper:before, .variant#fullpagewrapper.section-2#fullpagewrapper:after {
   border-bottom-color: white;
 }
-.variant#fullpagewrapper.section-2 header {
-  background-color: #E6007E;
-}
 .variant#fullpagewrapper.section-3#fullpagewrapper:before, .variant#fullpagewrapper.section-3#fullpagewrapper:after {
   border-bottom-color: #E6007E;
-}
-.variant#fullpagewrapper.section-3 header {
-  background-color: white;
 }
 .variant#fullpagewrapper section.section {
   background-color: #E6007E;
@@ -641,66 +659,6 @@ h6 {
     transform: translateY(0) !important;
   }
 }
-.variant#fullpagewrapper #fullpagewrapper footer nav#bottom-nav ul li a {
-  color: #E6007E;
-}
-.variant#fullpagewrapper #fullpagewrapper.odd footer nav#bottom-nav ul li a {
-  color: white;
-}
-.variant#fullpagewrapper #fullpagewrapper.section-1 footer nav#bottom-nav ul li a {
-  color: white !important;
-}
-.variant#fullpagewrapper #fullpagewrapper.section-3 footer nav#bottom-nav ul li a {
-  color: white !important;
-}
-.variant#fullpagewrapper .section-0.down #logowrapper svg {
-  clip-path: polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%);
-  animation: mask-up-out 0.35s ease forwards 0.5s;
-}
-.variant#fullpagewrapper .section-0.up #logowrapper svg {
-  clip-path: polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%);
-  animation: mask-down-out 0.35s ease forwards 0.5s;
-}
-.variant#fullpagewrapper .section-1.down #logowrapper svg {
-  clip-path: polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%);
-  animation: mask-up-out 0.35s ease forwards 0.5s;
-}
-.variant#fullpagewrapper .section-1.up #logowrapper svg {
-  clip-path: polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%);
-  animation: mask-down-out 0.35s ease forwards 0.5s;
-}
-.variant#fullpagewrapper .section-1.down #logowrapper svg {
-  clip-path: polygon(0% 110%, 100% 100%, 100% 100%, 0% 100%);
-  animation: mask-up-in 0.35s ease forwards 0.5s;
-}
-.variant#fullpagewrapper .section-1.up #logowrapper svg {
-  clip-path: polygon(0% 0%, 100% -10%, 100% -10%, 0% 0%);
-  animation: mask-down-in 0.35s ease forwards 0.5s;
-}
-.variant#fullpagewrapper .section-2.down #logowrapper svg {
-  clip-path: polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%);
-  animation: mask-up-out 0.35s ease forwards 0.5s;
-}
-.variant#fullpagewrapper .section-2.up #logowrapper svg {
-  clip-path: polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%);
-  animation: mask-down-out 0.35s ease forwards 0.5s;
-}
-.variant#fullpagewrapper .section-3.down #logowrapper svg {
-  clip-path: polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%);
-  animation: mask-up-out 0.35s ease forwards 0.5s;
-}
-.variant#fullpagewrapper .section-3.up #logowrapper svg {
-  clip-path: polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%);
-  animation: mask-down-out 0.35s ease forwards 0.5s;
-}
-.variant#fullpagewrapper .section-3.down #logowrapper svg {
-  clip-path: polygon(0% 110%, 100% 100%, 100% 100%, 0% 100%);
-  animation: mask-up-in 0.35s ease forwards 0.5s;
-}
-.variant#fullpagewrapper .section-3.up #logowrapper svg {
-  clip-path: polygon(0% 0%, 100% -10%, 100% -10%, 0% 0%);
-  animation: mask-down-in 0.35s ease forwards 0.5s;
-}
 .variant#fullpagewrapper:not(.fullpage):before {
   bottom: max(1.9vw, 1.9em);
   border-bottom-width: max(8vw, 3em);
@@ -709,34 +667,17 @@ h6 {
   bottom: 0;
   border-bottom-width: max(2vw, 2em);
 }
-.variant.content-wrapper {
-  position: relative;
-  overflow: hidden;
+.variant#fullpagewrapper:not(.fullpage).section-0 header {
+  background-color: #E6007E;
 }
-.variant.content-wrapper:before, .variant.content-wrapper:after {
-  content: "";
-  position: absolute;
-  display: table;
-  left: 0;
-  z-index: 4;
-  transition: all 0.625s ease 0.25s, border-width 0.625s ease 0.25s, bottom 0.625s ease 0.25s;
-  border-bottom-style: solid;
+.variant#fullpagewrapper:not(.fullpage).section-1 header {
+  background-color: white;
 }
-.variant.content-wrapper:before {
-  width: 0;
-  height: 0;
-  border-left: 100vw solid transparent;
+.variant#fullpagewrapper:not(.fullpage).section-2 header {
+  background-color: #E6007E;
 }
-.variant.content-wrapper:after {
-  width: 100%;
-}
-.variant.content-wrapper:before {
-  bottom: 0;
-  border-bottom-width: 0;
-}
-.variant.content-wrapper:after {
-  bottom: 0;
-  border-bottom-width: 0;
+.variant#fullpagewrapper:not(.fullpage).section-3 header {
+  background-color: white;
 }
 
 /* ############################# VARIABLES ################################# */
@@ -780,6 +721,7 @@ button {
 nav#nav ul li a, h1, h2, h3, h4, h5, h6 {
   font-family: "Helvetica", sans-serif;
   font-weight: 700;
+  margin-top: 0.25em;
   margin-bottom: 0.125em;
 }
 
