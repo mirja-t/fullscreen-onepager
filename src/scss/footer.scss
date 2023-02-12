@@ -1,0 +1,12 @@
+// footer
+footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 5;
+    padding: $padding-xs 0.75em 0.75em;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: min(-2em, -3vw);
+}

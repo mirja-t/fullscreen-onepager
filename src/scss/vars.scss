@@ -1,0 +1,105 @@
+/* ############################# VARIABLES ################################# */
+
+
+/* =========================================
+                    colors 
+   ========================================= */
+
+   $colors: (
+    primary:            #E6007E,
+    secondary:          #ffed00,
+    light-gray:         #f1f1f1,
+    -black:             black,
+    -white:             white
+);
+
+$primary:           map-get($colors, "primary");
+$secondary:         map-get($colors, "secondary");
+$light-gray:        map-get($colors, "light-gray");
+$black:             map-get($colors, "-black");
+$white:             map-get($colors, "-white");
+
+$section-color-odd: $white;
+$section-color-even: $primary;
+
+/* =========================================
+                  breakpoints 
+   ========================================= */
+
+$grid-breakpoints: (
+    xxs:    480px,
+    xs:     640px,
+    s:      768px,
+    m:      992px,
+    l:      1440px,
+    xl:      1680px,
+    xxl:     1920px,
+    xxxl:    2550px
+);
+
+$breakpoint-xxsmall:                            map-get($grid-breakpoints, "xxs");  // iPhone SE 1st gen. portrait
+$breakpoint-xsmall:                             map-get($grid-breakpoints, "xs");  // Phone portrait
+$breakpoint-small:                              map-get($grid-breakpoints, "s");  // Phone landscape
+$breakpoint-medium:                             map-get($grid-breakpoints, "m");  // Tablet Landscape
+$breakpoint-large:                              map-get($grid-breakpoints, "l"); // Desktop
+$breakpoint-xlarge:                             map-get($grid-breakpoints, "xl"); // Large Screens
+$breakpoint-xxlarge:                            map-get($grid-breakpoints, "xxl"); // XLarge Screens
+$breakpoint-xxxlarge:                           map-get($grid-breakpoints, "xxxl"); // XLarge Screens
+
+$grid-breakpoints-max: (
+    xxs:    ($breakpoint-xxsmall - 1),
+    xs:     ($breakpoint-xsmall - 1),
+    s:      ($breakpoint-small - 1),
+    m:      ($breakpoint-medium - 1),
+    l:      ($breakpoint-large - 1),
+    xl:     ($breakpoint-xlarge - 1),
+    xxl:    ($breakpoint-xxlarge - 1)
+);
+
+$breakpoint-xxsmall-max:                            map-get($grid-breakpoints-max, "xxs");  // iPhone SE 1st gen. portrait
+$breakpoint-xsmall-max:                             map-get($grid-breakpoints-max, "xs");  // Phone portrait
+$breakpoint-small-max:                              map-get($grid-breakpoints-max, "s");  // Phone landscape
+$breakpoint-medium-max:                             map-get($grid-breakpoints-max, "m");  // Tablet Landscape
+$breakpoint-large-max:                              map-get($grid-breakpoints-max, "l"); // Desktop
+$breakpoint-xlarge-max:                             map-get($grid-breakpoints-max, "xl"); // Large Screens
+$breakpoint-xxlarge-max:                            map-get($grid-breakpoints-max, "xxl"); // XLarge Screens
+
+$breakpoint-layout-switch: $breakpoint-medium;
+$breakpoint-layout-switch-max: $breakpoint-medium-max;
+
+/* =========================================
+                    fonts 
+   ========================================= */
+
+$headlines: h1, h2, h3, h4, h5, h6;
+
+$font-sans: 'Helvetica', sans-serif;
+$font-serif: 'Georgia', serif;
+$font-base: $font-serif;
+
+/* =========================================
+                  transitions 
+   ========================================= */
+
+$section-transition: 0.5s;
+$section-before-transition: $section-transition * 1.25;
+$section-transition-delay: $section-transition * 0.5;
+$section-content-transition-delay: $section-transition * .66;
+$section-color-transition: 1s;
+$section-color-transition-delay: 0s;
+
+
+/* =========================================
+                  padding 
+   ========================================= */
+
+$scalefactor: .5vw;
+
+$mainpadding:   calc( 0.75em + #{ $scalefactor } );
+$padding-xs:    calc( 0.25em + #{ $scalefactor * 0.5 } );
+$padding-xl:    calc( 1.5em + #{ $scalefactor * 2 } );
+
+$sections: 3;
+
+$transition-dur: 0.35s;
+$transition-delay: 0.5s;

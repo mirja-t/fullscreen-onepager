@@ -1,0 +1,187 @@
+/* ############################# MIXINS ################################# */
+
+// insert in section
+@mixin section-after($top-before: -9.9vw, $borderwidth-before: 8vw, $top-after: -2vw, $borderwidth-after: 2.1vw) {
+    &:before {
+        top: $top-before;
+        border-bottom-width: $borderwidth-before;
+    }
+    &:after {
+        top: $top-after;
+        border-bottom-width: $borderwidth-after;
+    }
+}
+
+/**
+ * COLOR OVERWRITES
+ *
+ */
+ // include in section
+ @mixin section-colors($section-color-even, $section-color-odd, $after: false) {
+    background-color: $section-color-even;
+    &:before,
+    &:after {
+        border-bottom-color: $section-color-even;
+    }
+    &:nth-child(2n) {
+        background-color: $section-color-odd;
+        &:before,
+        &:after {
+            border-bottom-color: $section-color-odd;
+        }
+    }
+    @if $after {
+        &:nth-child(2n) {
+            > .container {
+                &:before {
+                    background: linear-gradient(0deg, rgba($section-color-odd, 0) 0%, $section-color-odd 70%);
+                }
+            }
+        }
+        > .container {
+            &:before {
+                background: linear-gradient(0deg, rgba($section-color-even, 0) 0%, $section-color-even 70%);
+            }
+        }
+    }
+}
+
+
+
+// include globally
+@mixin nav-colors($section-color-even, $section-color-odd) {
+    // nav
+    #fullpagewrapper {
+        footer {
+            nav#bottom-nav ul li a {
+                color: $section-color-even;
+            }
+        }
+        &.odd {
+            footer {
+                nav#bottom-nav ul li a {
+                    color: $section-color-odd;
+                }
+            }
+        }
+    }
+
+    @for $i from 0 through $sections {  
+        @if $i % 2 == 1 {  
+            #fullpagewrapper.section-#{$i} {
+                footer {
+                    nav#bottom-nav ul li a {
+                        color: $section-color-odd !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// insert in main
+@mixin main-after($before: 1.9em, $before-border: 8vw, $after-border: 2em) {
+    &:before {
+        bottom: $before;
+        border-bottom-width: $before-border;
+    }
+    &:after {
+        bottom: 0;
+        border-bottom-width: $after-border;
+    }
+}
+
+// include in top level
+@mixin nav-mask($section-color-even, $section-color-odd, $dir: 'out', $selector: 'footer') {
+
+    $dir-1: 'out';
+    $dir-2: 'in';
+
+    // init-1 polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%)
+    $init-1: polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%); // not masked
+    $init-2: polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%); // not masked
+    $init-3: polygon(0% 0%, 100% -10%, 100% -10%, 0% 0%); // masked top --> bottom
+    $init-4: polygon(0% 110%, 100% 100%, 100% 100%, 0% 100%); // masked bottom --> top
+
+    @if $dir == 'in' {
+
+        $dir-1: 'in';
+        $dir-2: 'out';
+
+        $init-1: polygon(0% 0%, 100% -10%, 100% -10%, 0% 0%); // masked top --> bottom
+        $init-2: polygon(0% 110%, 100% 100%, 100% 100%, 0% 100%); // masked bottom --> top
+        $init-3: polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%); // not masked
+        $init-4: polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%); // not masked
+    }
+
+    @if $section-color-odd == white {
+
+        $dir-1: 'in';
+        $dir-2: 'out';
+        
+        @if $dir == 'in' {
+            $dir-1: 'out';
+            $dir-2: 'in';
+        }
+        @else {
+            $init-1: polygon(0% 0%, 100% -10%, 100% -10%, 0% 0%); // masked top --> bottom
+            $init-2: polygon(0% 110%, 100% 100%, 100% 100%, 0% 100%); // masked bottom --> top
+            $init-3: polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%); // not masked
+            $init-4: polygon(0% 0%, 100% -10%, 100% 100%, 0% 110%); // not masked
+        }
+    }
+
+
+    @for $i from 0 through $sections {  
+        .section-#{$i} {
+            &.down {
+                #{$selector} {
+                    svg {
+                        clip-path: $init-4;
+                        animation: mask-up- + $dir-1 $transition-dur ease forwards $transition-delay;
+                    }
+                }
+            }
+            
+            &.up {
+                #{$selector} {
+                    svg {
+                        clip-path: $init-3;
+                        animation: mask-down- + $dir-1 $transition-dur ease forwards $transition-delay;
+                    }
+                }
+            }
+        }
+        @if $i % 2 == 1 {  
+            .section-#{$i} {
+                &.down {
+                    #{$selector} {
+                        svg {
+                            clip-path: $init-2;
+                            animation: mask-up- + $dir-2 $transition-dur ease forwards $transition-delay;
+                        }
+                    }
+                }
+                &.up {
+                    #{$selector} {
+                        svg {
+                            clip-path: $init-1;
+                            animation: mask-down- + $dir-2 $transition-dur ease forwards $transition-delay;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// pseudo elements
+@mixin after {
+    content: '';
+    position: absolute;
+    display: table;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}

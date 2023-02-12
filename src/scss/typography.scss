@@ -1,0 +1,26 @@
+@import 'vars';
+
+%font-base {
+    font-family: $font-base;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+%font-italic {
+    font-family: $font-base;
+    font-weight: 400;
+    font-style: italic;
+}
+
+%font-headings {
+    font-family: $font-sans;
+    font-weight: 700;
+    margin-bottom: 0.125em;
+}
+
+@for $i from 1 through 6 {
+    h#{$i} {
+      @extend %font-headings;
+      font-size: calc( (7 - $i) * 0.35 * 1em + 0.5em + 1vw );
+    }
+}

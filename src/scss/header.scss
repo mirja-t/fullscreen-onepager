@@ -1,0 +1,19 @@
+header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 4;
+    padding: 0.75em;
+}
+
+[class*='section'] {
+    header {
+        background: $white;
+    }
+    &.fullpage {
+        header {
+            background: transparent;
+        }
+    }
+}
