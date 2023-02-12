@@ -1,0 +1,12 @@
+@import 'vars';
+@import 'typography';
+
+button {
+    margin-top: .75em;
+    padding: 0.25em 1em;
+    border: none;
+    border-radius: 0;
+    background-color: $black;
+    color: $white;
+    @extend %font-base;
+}

@@ -9,6 +9,7 @@ class Fullpage {
         this._fullpageLayout = false;
         this._windowWidth = null;
         this._lastScrollPos = 0;
+        this._scrollDirection = null;
         this._addEventListener();
         this._init();
     }
@@ -43,6 +44,11 @@ class Fullpage {
         return parseInt(str.match(/[0-9]+/)[0]);
     }
     
+    _setScrollDirection() {
+        this._scrollDirection = this._lastScrollPos < window.scrollY ? 'down' : 'up';
+        this._lastScrollPos = window.scrollY;
+    }
+
     _setInviewClass(sectionNumber, reset=false) {
         const contentElements = this._sections[sectionNumber].querySelectorAll('.content');
         if(contentElements) {
@@ -88,11 +94,12 @@ class Fullpage {
 
     _leavesViewport(el) {
         const rect = el.getBoundingClientRect();
-        return this._lastScrollPos < window.scrollY ? rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) : rect.top >= 0;
+        return this._scrollDirection==="down" ? rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) : rect.top >= 0;
     }
 
     // event listener scroll
     _sectionScrolling(e, reset=false) {
+        this._debounce(this._setScrollDirection(), 500);
         if(reset) {
             this._scrollToSection(0);
             window.scrollTo(0, 0);
@@ -104,10 +111,8 @@ class Fullpage {
         }
         else if(!this._fullpageLayout) {
             let leaving = this._leavesViewport(this._sections[this._currentSectionNumber]);
-
             if(leaving) {
-                let nextSectionNumber = this._lastScrollPos < window.scrollY ? Math.min(this._sections.length-1, this._currentSectionNumber+1) : Math.max(0, this._currentSectionNumber-1);
-                this._lastScrollPos = window.scrollY;
+                let nextSectionNumber = this._scrollDirection==='down' ? Math.min(this._sections.length-1, this._currentSectionNumber+1) : Math.max(0, this._currentSectionNumber-1);
                 this._setSectionActive(nextSectionNumber);
             }
 
