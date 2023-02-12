@@ -1,4 +1,4 @@
-![TFullpage-Onepager-Logo](/dist/assets/images/fullscreen-onepager-logo.svg "Fullpage-Onepager-Logo")
+![Fullpage-Onepager-Logo](/dist/assets/images/fullscreen-onepager-logo.svg "Fullpage-Onepager-Logo")
 
 # Fullscreen Onepager
 
@@ -56,6 +56,9 @@ const config = {
 const fullpage = new Fullpage(fpwrapper, fp, nav, config);
 ```
 
-## Live site
+## Demo site
 
-[Demo](https://fullscreen-onepager.netlify.app/) 
+[fullscreen-onepager.netlify.app](https://fullscreen-onepager.netlify.app/) 
+
+![Fullpage-Onepager-Screenshot](/dist/assets/images/fullscreen-onepager-screenshot.jpg "Fullpage-Onepager-Screenshot")
+
