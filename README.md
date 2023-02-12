@@ -1,4 +1,4 @@
-![Fullpage-Onepager-Logo](/dist/assets/images/fullscreen-onepager-logo.svg "Fullpage-Onepager-Logo")
+![Fullpage-Onepager-Logo](/dist/assets/images/fullscreen-onepager-logo.png "Fullpage-Onepager-Logo")
 
 # Fullscreen Onepager
 
